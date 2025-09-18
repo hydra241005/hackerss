@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroWellness Hub - Supporting Astronaut Health in the Final Frontier</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Fixed Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>AstroWellness Hub</h1>
+                    <span class="tagline">Supporting Astronaut Health in the Final Frontier</span>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link active">Home</a></li>
+                        <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                        <li><a href="#information" class="nav-link">Information Hub</a></li>
+                        <li><a href="#support" class="nav-link">Support Systems</a></li>
+                        <li><a href="#research" class="nav-link">Research Data</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-nav">
+                    <div id="auth-buttons" class="auth-buttons">
+                        <button class="btn btn--outline btn--sm auth-btn" data-target="login">Login</button>
+                        <button class="btn btn--primary btn--sm auth-btn" data-target="signup">Sign Up</button>
+                    </div>
+                    <div id="user-nav" class="user-nav hidden">
+                        <div class="user-info">
+                            <span class="user-name" id="user-display-name">User</span>
+                            <div class="user-dropdown">
+                                <button class="user-menu-btn" id="user-menu-btn">⚙️</button>
+                                <div class="user-menu hidden" id="user-menu">
+                                    <a href="#profile" class="user-menu-item">Profile</a>
+                                    <a href="#" class="user-menu-item" id="logout-btn">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="site-main">
+        <!-- Login Page -->
+        <section id="login" class="page auth-page">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="auth-card card">
+                        <div class="auth-header">
+                            <h1>Welcome Back</h1>
+                            <p>Sign in to your AstroWellness Hub account</p>
+                        </div>
+                        <form id="login-form" class="auth-form">
+                            <div class="form-group">
+                                <label class="form-label" for="login-email">Email Address</label>
+                                <input type="email" id="login-email" name="email" class="form-control" required>
+                                <div class="form-error" id="login-email-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="login-password">Password</label>
+                                <input type="password" id="login-password" name="password" class="form-control" required>
+                                <div class="form-error" id="login-password-error"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-options">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="remember-me" name="rememberMe">
+                                        <span class="checkmark"></span>
+                                        Remember me
+                                    </label>
+                                    <a href="#" class="forgot-password">Forgot Password?</a>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full-width">Sign In</button>
+                            <div class="form-message" id="login-message"></div>
+                        </form>
+                        <div class="auth-footer">
+                            <p>Don't have an account? <a href="#" class="auth-switch" data-target="signup">Sign up here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signup Page -->
+        <section id="signup" class="page auth-page">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="auth-card card">
+                        <div class="auth-header">
+                            <h1>Join AstroWellness Hub</h1>
+                            <p>Create your account to access astronaut wellness resources</p>
+                        </div>
+                        <form id="signup-form" class="auth-form">
+                            <!-- Personal Information -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">Personal Information</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label" for="first-name">First Name *</label>
+                                        <input type="text" id="first-name" name="firstName" class="form-control" required>
+                                        <div class="form-error" id="first-name-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="last-name">Last Name *</label>
+                                        <input type="text" id="last-name" name="lastName" class="form-control" required>
+                                        <div class="form-error" id="last-name-error"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="signup-email">Email Address *</label>
+                                    <input type="email" id="signup-email" name="email" class="form-control" required>
+                                    <div class="form-error" id="signup-email-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">Phone Number (Optional)</label>
+                                    <input type="tel" id="phone" name="phone" class="form-control">
+                                    <div class="form-error" id="phone-error"></div>
+                                </div>
+                            </div>
+
+                            <!-- Professional Details -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">Professional Details</h3>
+                                <div class="form-group">
+                                    <label class="form-label" for="organization">Organization/Agency *</label>
+                                    <select id="organization" name="organization" class="form-control" required>
+                                        <option value="">Select your organization</option>
+                                        <option value="NASA">NASA</option>
+                                        <option value="ESA (European Space Agency)">ESA (European Space Agency)</option>
+                                        <option value="Roscosmos">Roscosmos</option>
+                                        <option value="JAXA (Japan Aerospace Exploration Agency)">JAXA (Japan Aerospace Exploration Agency)</option>
+                                        <option value="CSA (Canadian Space Agency)">CSA (Canadian Space Agency)</option>
+                                        <option value="SpaceX">SpaceX</option>
+                                        <option value="Blue Origin">Blue Origin</option>
+                                        <option value="Boeing">Boeing</option>
+                                        <option value="Lockheed Martin">Lockheed Martin</option>
+                                        <option value="University/Academic Institution">University/Academic Institution</option>
+                                        <option value="Research Institute">Research Institute</option>
+                                        <option value="Healthcare Organization">Healthcare Organization</option>
+                                        <option value="Government Agency">Government Agency</option>
+                                        <option value="Private Company">Private Company</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <div class="form-error" id="organization-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="user-type">Role/Position *</label>
+                                    <select id="user-type" name="userType" class="form-control" required>
+                                        <option value="">Select your role</option>
+                                        <option value="astronaut">Active Astronaut</option>
+                                        <option value="researcher">Researcher/Scientist</option>
+                                        <option value="medical">Medical Professional</option>
+                                        <option value="engineer">Aerospace Engineer</option>
+                                        <option value="admin">Administrator</option>
+                                        <option value="student">Student/Academic</option>
+                                    </select>
+                                    <div class="form-error" id="user-type-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="experience">Years of Experience *</label>
+                                    <select id="experience" name="experience" class="form-control" required>
+                                        <option value="">Select experience level</option>
+                                        <option value="0-2">0-2 years</option>
+                                        <option value="3-5">3-5 years</option>
+                                        <option value="6-10">6-10 years</option>
+                                        <option value="11-15">11-15 years</option>
+                                        <option value="16-20">16-20 years</option>
+                                        <option value="20+">20+ years</option>
+                                    </select>
+                                    <div class="form-error" id="experience-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="specialization">Area of Specialization</label>
+                                    <select id="specialization" name="specialization" class="form-control">
+                                        <option value="">Select specialization (Optional)</option>
+                                        <option value="Space Medicine">Space Medicine</option>
+                                        <option value="Psychology/Behavioral Health">Psychology/Behavioral Health</option>
+                                        <option value="Exercise Physiology">Exercise Physiology</option>
+                                        <option value="Nutrition">Nutrition</option>
+                                        <option value="Life Support Systems">Life Support Systems</option>
+                                        <option value="Mission Operations">Mission Operations</option>
+                                        <option value="Human Factors">Human Factors</option>
+                                        <option value="Biomedical Engineering">Biomedical Engineering</option>
+                                        <option value="Data Analysis">Data Analysis</option>
+                                        <option value="Software Development">Software Development</option>
+                                        <option value="Research Methodology">Research Methodology</option>
+                                        <option value="Clinical Practice">Clinical Practice</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Security -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">Security</h3>
+                                <div class="form-group">
+                                    <label class="form-label" for="signup-password">Password *</label>
+                                    <input type="password" id="signup-password" name="password" class="form-control" required>
+                                    <div class="password-strength" id="password-strength"></div>
+                                    <div class="form-error" id="signup-password-error"></div>
+                                    <div class="password-requirements">
+                                        <small>Password must be at least 8 characters with uppercase, lowercase, and number</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="confirm-password">Confirm Password *</label>
+                                    <input type="password" id="confirm-password" name="confirmPassword" class="form-control" required>
+                                    <div class="form-error" id="confirm-password-error"></div>
+                                </div>
+                            </div>
+
+                            <!-- Terms and Conditions -->
+                            <div class="form-section">
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="terms-accepted" name="termsAccepted" required>
+                                        <span class="checkmark"></span>
+                                        I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a> *
+                                    </label>
+                                    <div class="form-error" id="terms-error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="newsletter" name="newsletter">
+                                        <span class="checkmark"></span>
+                                        Send me updates about astronaut wellness research and platform updates
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn--primary btn--full-width">Create Account</button>
+                            <div class="form-message" id="signup-message"></div>
+                        </form>
+                        <div class="auth-footer">
+                            <p>Already have an account? <a href="#" class="auth-switch" data-target="login">Sign in here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Page -->
+        <section id="profile" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>User Profile</h1>
+                    <p>Manage your account information and preferences</p>
+                </div>
+
+                <div class="profile-content">
+                    <div class="profile-card card">
+                        <div class="card__header">
+                            <h3>Profile Information</h3>
+                            <button class="btn btn--outline btn--sm" id="edit-profile-btn">Edit Profile</button>
+                        </div>
+                        <div class="card__body">
+                            <div id="profile-view" class="profile-view">
+                                <div class="profile-grid">
+                                    <div class="profile-item">
+                                        <label>Name:</label>
+                                        <span id="profile-name">-</span>
+                                    </div>
+                                    <div class="profile-item">
+                                        <label>Email:</label>
+                                        <span id="profile-email">-</span>
+                                    </div>
+                                    <div class="profile-item">
+                                        <label>Phone:</label>
+                                        <span id="profile-phone">-</span>
+                                    </div>
+                                    <div class="profile-item">
+                                        <label>Organization:</label>
+                                        <span id="profile-organization">-</span>
+                                    </div>
+                                    <div class="profile-item">
+                                        <label>Role:</label>
+                                        <span id="profile-role">-</span>
+                                    </div>
+                                    <div class="profile-item">
+                                        <label>Experience:</label>
+                                        <span id="profile-experience">-</span>
+                                    </div>
+                                    <div class="profile-item">
+                                        <label>Specialization:</label>
+                                        <span id="profile-specialization">-</span>
+                                    </div>
+                                    <div class="profile-item">
+                                        <label>Member Since:</label>
+                                        <span id="profile-join-date">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="profile-edit" class="profile-edit hidden">
+                                <form id="profile-form">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label class="form-label">First Name</label>
+                                            <input type="text" id="edit-first-name" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Last Name</label>
+                                            <input type="text" id="edit-last-name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Phone</label>
+                                        <input type="tel" id="edit-phone" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Specialization</label>
+                                        <select id="edit-specialization" class="form-control">
+                                            <option value="">Select specialization (Optional)</option>
+                                            <option value="Space Medicine">Space Medicine</option>
+                                            <option value="Psychology/Behavioral Health">Psychology/Behavioral Health</option>
+                                            <option value="Exercise Physiology">Exercise Physiology</option>
+                                            <option value="Nutrition">Nutrition</option>
+                                            <option value="Life Support Systems">Life Support Systems</option>
+                                            <option value="Mission Operations">Mission Operations</option>
+                                            <option value="Human Factors">Human Factors</option>
+                                            <option value="Biomedical Engineering">Biomedical Engineering</option>
+                                            <option value="Data Analysis">Data Analysis</option>
+                                            <option value="Software Development">Software Development</option>
+                                            <option value="Research Methodology">Research Methodology</option>
+                                            <option value="Clinical Practice">Clinical Practice</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn--primary">Save Changes</button>
+                                        <button type="button" class="btn btn--outline" id="cancel-edit-btn">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Home/Landing Page -->
+        <section id="home" class="page active">
+            <div class="hero-section">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Advancing Astronaut Well-Being in Space</h1>
+                        <p class="hero-subtitle">Comprehensive research, monitoring, and support for psychological and physical health in the final frontier</p>
+                        <div class="hero-actions">
+                            <button class="btn btn--primary hero-btn" data-target="dashboard">Explore Dashboard</button>
+                            <button class="btn btn--outline hero-btn" data-target="information">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-section">
+                <div class="container">
+                    <h2 class="section-title">Critical Health Statistics</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">85.2%</div>
+                            <div class="stat-label">Female Astronauts with Anxiety Symptoms</div>
+                            <div class="stat-description">Significantly higher than male counterparts (22.8%)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1.5%</div>
+                            <div class="stat-label">Monthly Bone Density Loss</div>
+                            <div class="stat-description">In microgravity conditions</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">70%</div>
+                            <div class="stat-label">Astronauts Experience SAS</div>
+                            <div class="stat-description">Space Adaptation Syndrome affects majority</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">60%</div>
+                            <div class="stat-label">Severe Mental Disorders</div>
+                            <div class="stat-description">In missions exceeding 600 days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="challenges-overview">
+                <div class="container">
+                    <h2 class="section-title">Key Challenges in Space</h2>
+                    <div class="challenges-grid">
+                        <div class="challenge-card">
+                            <div class="challenge-icon">🧠</div>
+                            <h3>Psychological Health</h3>
+                            <p>Isolation, confinement, communication delays, and sleep disruption create complex mental health challenges.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-icon">💪</div>
+                            <h3>Physical Health</h3>
+                            <p>Microgravity causes bone loss, muscle atrophy, cardiovascular deconditioning, and vision problems.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-icon">⏰</div>
+                            <h3>Mission Duration</h3>
+                            <p>Longer missions exponentially increase health risks, especially for deep space exploration.</p>
+                        </div>
+                        <div class="challenge-card">
+                            <div class="challenge-icon">🔬</div>
+                            <h3>Research Solutions</h3>
+                            <p>Ongoing studies develop countermeasures and support systems for astronaut well-being.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Page -->
+        <section id="dashboard" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Health Monitoring Dashboard</h1>
+                    <p>Real-time health metrics and key performance indicators</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card dashboard-widget">
+                        <div class="card__header">
+                            <h3>Psychological Health Indicators</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="metric-group">
+                                <div class="metric-item">
+                                    <span class="metric-value">22.8%</span>
+                                    <span class="metric-label">Male Anxiety Rate</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-value">85.2%</span>
+                                    <span class="metric-label">Female Anxiety Rate</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-value">43.2%</span>
+                                    <span class="metric-label">Female Depression Rate</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-value">34.8%</span>
+                                    <span class="metric-label">Male Depression Rate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card dashboard-widget">
+                        <div class="card__header">
+                            <h3>Physical Health Metrics</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="metric-group">
+                                <div class="metric-item">
+                                    <span class="metric-value">1.5%</span>
+                                    <span class="metric-label">Monthly Bone Loss</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-value">7%</span>
+                                    <span class="metric-label">Muscle Mass Loss Rate</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-value">2.5</span>
+                                    <span class="metric-label">Daily Exercise Hours</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-value">36</span>
+                                    <span class="metric-label">Bone Recovery Months</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card dashboard-widget chart-widget">
+                        <div class="card__header">
+                            <h3>Psychological Health by Gender</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="chart-container" style="position: relative; height: 300px;">
+                                <canvas id="psychological-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card dashboard-widget chart-widget">
+                        <div class="card__header">
+                            <h3>Bone Density Loss Over Time</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="chart-container" style="position: relative; height: 300px;">
+                                <canvas id="bone-density-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card dashboard-widget">
+                        <div class="card__header">
+                            <h3>Mission Statistics</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="mission-stats">
+                                <div class="mission-stat">
+                                    <div class="stat-icon">🚀</div>
+                                    <div class="stat-info">
+                                        <div class="stat-number">168</div>
+                                        <div class="stat-text">Average ISS Mission Days</div>
+                                    </div>
+                                </div>
+                                <div class="mission-stat">
+                                    <div class="stat-icon">🔴</div>
+                                    <div class="stat-info">
+                                        <div class="stat-number">30</div>
+                                        <div class="stat-text">Mars Communication Delay (min)</div>
+                                    </div>
+                                </div>
+                                <div class="mission-stat">
+                                    <div class="stat-icon">👥</div>
+                                    <div class="stat-info">
+                                        <div class="stat-number">6</div>
+                                        <div class="stat-text">Typical Crew Size</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card dashboard-widget alert-widget">
+                        <div class="card__header">
+                            <h3>Health Alerts & Recommendations</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="alert-list">
+                                <div class="alert-item status--warning">
+                                    <div class="alert-icon">⚠️</div>
+                                    <div class="alert-content">
+                                        <div class="alert-title">High Female Anxiety Rates</div>
+                                        <div class="alert-text">85.2% of female astronauts show anxiety symptoms - implement targeted support</div>
+                                    </div>
+                                </div>
+                                <div class="alert-item status--error">
+                                    <div class="alert-icon">🦴</div>
+                                    <div class="alert-content">
+                                        <div class="alert-title">Critical Bone Density Loss</div>
+                                        <div class="alert-text">1.5% monthly loss requires intensive countermeasures</div>
+                                    </div>
+                                </div>
+                                <div class="alert-item status--info">
+                                    <div class="alert-icon">🏃</div>
+                                    <div class="alert-content">
+                                        <div class="alert-title">Exercise Protocol Compliance</div>
+                                        <div class="alert-text">Maintain 2.5 hours daily exercise for optimal health</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Hub Page -->
+        <section id="information" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Information Hub</h1>
+                    <p>Comprehensive research findings and detailed analysis</p>
+                </div>
+
+                <div class="information-sections">
+                    <div class="info-section">
+                        <h2>Psychological Challenges</h2>
+                        <div class="challenges-list">
+                            <div class="challenge-detail card">
+                                <div class="card__body">
+                                    <h3>Isolation and Confinement</h3>
+                                    <div class="challenge-meta">
+                                        <span class="severity-badge status--error">Critical</span>
+                                        <span class="impact-text">High stress, anxiety, interpersonal conflicts</span>
+                                    </div>
+                                    <p>Extended periods in small, enclosed spaces with limited crew members create unprecedented psychological stress. The combination of physical confinement and social isolation can lead to significant mental health challenges.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="challenge-detail card">
+                                <div class="card__body">
+                                    <h3>Communication Delays</h3>
+                                    <div class="challenge-meta">
+                                        <span class="severity-badge status--warning">High</span>
+                                        <span class="impact-text">Reduced real-time psychological support</span>
+                                    </div>
+                                    <p>Communication delays of up to 30 minutes for Mars missions severely limit real-time psychological support from Earth. This creates a critical gap in mental health intervention capabilities.</p>
+                                </div>
+                            </div>
+
+                            <div class="challenge-detail card">
+                                <div class="card__body">
+                                    <h3>Sleep Disruption</h3>
+                                    <div class="challenge-meta">
+                                        <span class="severity-badge status--warning">High</span>
+                                        <span class="impact-text">Fatigue, cognitive impairment, mood issues</span>
+                                    </div>
+                                    <p>Altered circadian rhythms due to lack of natural light cycles significantly impact sleep quality, leading to cognitive decline and emotional instability.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h2>Physical Health Effects</h2>
+                        <div class="challenges-list">
+                            <div class="challenge-detail card">
+                                <div class="card__body">
+                                    <h3>Bone Density Loss</h3>
+                                    <div class="challenge-meta">
+                                        <span class="severity-badge status--error">Critical</span>
+                                        <span class="impact-text">Increased fracture risk, osteoporosis-like symptoms</span>
+                                    </div>
+                                    <p>Astronauts lose 1-1.5% of bone mineral density per month in microgravity conditions. This rapid deterioration poses serious long-term health risks and requires intensive countermeasures.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="challenge-detail card">
+                                <div class="card__body">
+                                    <h3>Muscle Atrophy</h3>
+                                    <div class="challenge-meta">
+                                        <span class="severity-badge status--error">Critical</span>
+                                        <span class="impact-text">Decreased physical performance, coordination issues</span>
+                                    </div>
+                                    <p>Rapid muscle mass and strength reduction occurs in microgravity, affecting both type I and type II muscle fibers. This impacts mission performance and post-flight recovery.</p>
+                                </div>
+                            </div>
+
+                            <div class="challenge-detail card">
+                                <div class="card__body">
+                                    <h3>Cardiovascular Deconditioning</h3>
+                                    <div class="challenge-meta">
+                                        <span class="severity-badge status--warning">High</span>
+                                        <span class="impact-text">Reduced exercise capacity, orthostatic intolerance</span>
+                                    </div>
+                                    <p>Microgravity leads to decreased cardiovascular fitness and blood volume reduction, creating challenges for Earth reentry and recovery.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h2>Current Countermeasures</h2>
+                        <div class="countermeasures-grid">
+                            <div class="countermeasure-card card">
+                                <div class="card__body">
+                                    <h3>Advanced Resistive Exercise Device (ARED)</h3>
+                                    <div class="effectiveness-badge status--success">High Effectiveness</div>
+                                    <p>Provides resistance training in microgravity using vacuum cylinders. Currently deployed on ISS for strength maintenance.</p>
+                                    <div class="availability">Currently Available</div>
+                                </div>
+                            </div>
+
+                            <div class="countermeasure-card card">
+                                <div class="card__body">
+                                    <h3>Behavioral Health Support</h3>
+                                    <div class="effectiveness-badge status--success">High Effectiveness</div>
+                                    <p>Individual psychological support services and family support programs provide essential mental health intervention.</p>
+                                    <div class="availability">Currently Available</div>
+                                </div>
+                            </div>
+
+                            <div class="countermeasure-card card">
+                                <div class="card__body">
+                                    <h3>Virtual Reality Therapy</h3>
+                                    <div class="effectiveness-badge status--info">Moderate Effectiveness</div>
+                                    <p>VR systems for mental relaxation and Earth connection experiences. Shows promise for psychological well-being.</p>
+                                    <div class="availability">In Development</div>
+                                </div>
+                            </div>
+
+                            <div class="countermeasure-card card">
+                                <div class="card__body">
+                                    <h3>Automated Psychotherapy</h3>
+                                    <div class="effectiveness-badge status--info">Promising</div>
+                                    <p>AI-driven therapeutic interventions for real-time support, addressing communication delay challenges.</p>
+                                    <div class="availability">Research Phase</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Systems Page -->
+        <section id="support" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Support Systems</h1>
+                    <p>Resources and tools for astronaut well-being</p>
+                </div>
+
+                <div class="support-categories">
+                    <div class="support-category">
+                        <h2>Mental Health Resources</h2>
+                        <div class="support-grid">
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">🧠</div>
+                                    <h3>Flight Surgeon Oversight</h3>
+                                    <p>Continuous psychological monitoring and intervention by qualified medical professionals.</p>
+                                    <div class="support-status status--success">Active</div>
+                                </div>
+                            </div>
+                            
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">💬</div>
+                                    <h3>Private Counseling Sessions</h3>
+                                    <p>Confidential one-on-one therapy sessions with specialized space psychologists.</p>
+                                    <div class="support-status status--success">Available</div>
+                                </div>
+                            </div>
+
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">📱</div>
+                                    <h3>Family Communication Systems</h3>
+                                    <p>Video calls, messaging, and email systems to maintain connections with loved ones on Earth.</p>
+                                    <div class="support-status status--success">Active</div>
+                                </div>
+                            </div>
+
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">🎮</div>
+                                    <h3>Virtual Reality Relaxation</h3>
+                                    <p>Immersive Earth environments and relaxation experiences to combat isolation.</p>
+                                    <div class="support-status status--warning">Developing</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="support-category">
+                        <h2>Physical Health Support</h2>
+                        <div class="support-grid">
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">🏃</div>
+                                    <h3>Daily Exercise Protocols</h3>
+                                    <p>Structured 2.5-hour daily exercise regimens using ARED, treadmill, and cycle ergometer.</p>
+                                    <div class="support-status status--success">Active</div>
+                                </div>
+                            </div>
+                            
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">🍎</div>
+                                    <h3>Nutritional Monitoring</h3>
+                                    <p>Comprehensive dietary tracking and supplementation programs including calcium and Vitamin D.</p>
+                                    <div class="support-status status--success">Active</div>
+                                </div>
+                            </div>
+
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">📊</div>
+                                    <h3>Medical Monitoring Devices</h3>
+                                    <p>Continuous health monitoring through wearable devices and medical equipment.</p>
+                                    <div class="support-status status--success">Active</div>
+                                </div>
+                            </div>
+
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">🏥</div>
+                                    <h3>Rehabilitation Planning</h3>
+                                    <p>Comprehensive post-mission recovery and readaptation programs for Earth return.</p>
+                                    <div class="support-status status--success">Active</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="support-category">
+                        <h2>Technology Solutions</h2>
+                        <div class="support-grid">
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">⌚</div>
+                                    <h3>Wearable Health Monitors</h3>
+                                    <p>Advanced sensors for continuous monitoring of vital signs and physiological parameters.</p>
+                                    <div class="support-status status--success">Deployed</div>
+                                </div>
+                            </div>
+                            
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">🚨</div>
+                                    <h3>Automated Health Alerts</h3>
+                                    <p>AI-powered systems that detect health anomalies and trigger appropriate interventions.</p>
+                                    <div class="support-status status--info">Testing</div>
+                                </div>
+                            </div>
+
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">🖥️</div>
+                                    <h3>Telemedicine Platforms</h3>
+                                    <p>Remote medical consultation and diagnostic capabilities with Earth-based specialists.</p>
+                                    <div class="support-status status--success">Active</div>
+                                </div>
+                            </div>
+
+                            <div class="support-item card">
+                                <div class="card__body">
+                                    <div class="support-icon">📈</div>
+                                    <h3>Data Analytics Systems</h3>
+                                    <p>Advanced algorithms for health trend analysis and predictive health modeling.</p>
+                                    <div class="support-status status--warning">Developing</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Data Page -->
+        <section id="research" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Research Data</h1>
+                    <p>Scientific studies and statistical analysis</p>
+                </div>
+
+                <div class="research-content">
+                    <div class="recent-studies">
+                        <h2>Recent Research Findings</h2>
+                        <div class="studies-list">
+                            <div class="study-card card">
+                                <div class="card__body">
+                                    <div class="study-header">
+                                        <h3>Long-term Spaceflight Mental Health Study</h3>
+                                        <div class="study-date">November 7, 2023</div>
+                                    </div>
+                                    <div class="study-source">Nature Translational Psychiatry 2023</div>
+                                    <p class="study-finding">Composite spaceflight stress induces depression-like behavior with altered neuroplasticity</p>
+                                    <div class="study-impact">
+                                        <strong>Impact:</strong> Critical understanding of neurobiological basis of space-induced depression
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="study-card card">
+                                <div class="card__body">
+                                    <div class="study-header">
+                                        <h3>Microgravity Effects on Human Physiology</h3>
+                                        <div class="study-date">November 12, 2024</div>
+                                    </div>
+                                    <div class="study-source">International Journal of Molecular Sciences 2024</div>
+                                    <p class="study-finding">Long-term microgravity exposure causes significant musculoskeletal changes</p>
+                                    <div class="study-impact">
+                                        <strong>Impact:</strong> Comprehensive understanding of physical health impacts
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="study-card card">
+                                <div class="card__body">
+                                    <div class="study-header">
+                                        <h3>Automated Psychotherapy in Space</h3>
+                                        <div class="study-date">October 8, 2024</div>
+                                    </div>
+                                    <div class="study-source">Interactive Journal of Medical Research 2024</div>
+                                    <p class="study-finding">Automated systems show promise for addressing communication delay challenges</p>
+                                    <div class="study-impact">
+                                        <strong>Impact:</strong> Potential solution for deep space mission mental health support
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-visualization">
+                        <h2>Mission Phase Analysis</h2>
+                        <div class="phases-grid">
+                            <div class="phase-card card">
+                                <div class="card__body">
+                                    <h3>Pre-Mission Phase</h3>
+                                    <div class="phase-duration">Duration: 12-18 months</div>
+                                    <div class="phase-focus">Focus: Prevention and preparation</div>
+                                    <ul class="phase-activities">
+                                        <li>Psychological screening</li>
+                                        <li>Resilience training</li>
+                                        <li>Team building</li>
+                                        <li>Family preparation</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="phase-card card">
+                                <div class="card__body">
+                                    <h3>In-Mission Phase</h3>
+                                    <div class="phase-duration">Duration: 6 months to 2+ years</div>
+                                    <div class="phase-focus">Focus: Active intervention and maintenance</div>
+                                    <ul class="phase-activities">
+                                        <li>Daily monitoring</li>
+                                        <li>Exercise protocols</li>
+                                        <li>Psychological support</li>
+                                        <li>Medical care</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="phase-card card">
+                                <div class="card__body">
+                                    <h3>Post-Mission Phase</h3>
+                                    <div class="phase-duration">Duration: 6-12 months</div>
+                                    <div class="phase-focus">Focus: Recovery and reintegration</div>
+                                    <ul class="phase-activities">
+                                        <li>Rehabilitation</li>
+                                        <li>Medical evaluation</li>
+                                        <li>Psychological debriefing</li>
+                                        <li>Readaptation support</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="statistical-analysis">
+                        <h2>Key Statistical Insights</h2>
+                        <div class="stats-comparison">
+                            <div class="comparison-chart">
+                                <div class="chart-container" style="position: relative; height: 400px;">
+                                    <canvas id="gender-comparison-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>About AstroWellness Hub</h1>
+                    <p>Our mission to advance astronaut health and well-being</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="mission-statement">
+                        <div class="card">
+                            <div class="card__body">
+                                <h2>Our Mission</h2>
+                                <p class="mission-text">Advancing research and support for astronaut psychological and physical well-being through evidence-based solutions. We are committed to ensuring that every astronaut has access to the best possible health support systems during their service in space.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-sections">
+                        <div class="about-section">
+                            <h2>Research Focus Areas</h2>
+                            <div class="focus-areas">
+                                <div class="focus-area card">
+                                    <div class="card__body">
+                                        <h3>Psychological Well-being</h3>
+                                        <p>Developing innovative approaches to address isolation, anxiety, depression, and other mental health challenges specific to space environments.</p>
+                                    </div>
+                                </div>
+                                <div class="focus-area card">
+                                    <div class="card__body">
+                                        <h3>Physical Health Maintenance</h3>
+                                        <p>Researching countermeasures for bone loss, muscle atrophy, cardiovascular deconditioning, and other physiological impacts of microgravity.</p>
+                                    </div>
+                                </div>
+                                <div class="focus-area card">
+                                    <div class="card__body">
+                                        <h3>Technology Solutions</h3>
+                                        <p>Developing advanced monitoring systems, automated support tools, and innovative therapeutic technologies for space applications.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="about-section">
+                            <h2>Key Partnerships</h2>
+                            <div class="partnerships">
+                                <div class="partnership-item">
+                                    <h3>NASA Johnson Space Center</h3>
+                                    <p>Collaborating on astronaut health research and operational support systems</p>
+                                </div>
+                                <div class="partnership-item">
+                                    <h3>European Space Agency (ESA)</h3>
+                                    <p>Joint research initiatives on long-duration spaceflight health impacts</p>
+                                </div>
+                                <div class="partnership-item">
+                                    <h3>International Space Station (ISS)</h3>
+                                    <p>Real-world testing and implementation of health support technologies</p>
+                                </div>
+                                <div class="partnership-item">
+                                    <h3>Academic Institutions</h3>
+                                    <p>University partnerships for cutting-edge research and innovation</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="about-section">
+                            <h2>Future Directions</h2>
+                            <div class="future-initiatives card">
+                                <div class="card__body">
+                                    <ul class="initiatives-list">
+                                        <li>Development of AI-powered psychological support systems for deep space missions</li>
+                                        <li>Advanced countermeasures for Mars mission duration health challenges</li>
+                                        <li>Personalized medicine approaches for individual astronaut health optimization</li>
+                                        <li>Integration of virtual and augmented reality for mental health support</li>
+                                        <li>Expansion of telemedicine capabilities for deep space exploration</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="about-section">
+                            <h2>Contact Information</h2>
+                            <div class="contact-info card">
+                                <div class="card__body">
+                                    <div class="contact-details">
+                                        <div class="contact-item">
+                                            <h3>Research Inquiries</h3>
+                                            <p>research@astrowellness.org</p>
+                                        </div>
+                                        <div class="contact-item">
+                                            <h3>Partnership Opportunities</h3>
+                                            <p>partnerships@astrowellness.org</p>
+                                        </div>
+                                        <div class="contact-item">
+                                            <h3>General Information</h3>
+                                            <p>info@astrowellness.org</p>
+                                        </div>
+                                        <div class="contact-item">
+                                            <h3>Address</h3>
+                                            <p>Space Health Research Center<br>
+                                            Houston, TX 77058<br>
+                                            United States</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top hidden" id="back-to-top">↑</button>
+
+    <script src="app.js"></script>
+</body>
+</html>
